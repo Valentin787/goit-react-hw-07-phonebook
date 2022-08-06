@@ -9,14 +9,11 @@ import App from './components/App/App';
 import './index.css';
 
 ReactDOM.render(
-  <>
-    <BrowserRouter>
+  
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>
-      </Provider>
-    </BrowserRouter>
-  </>,
+      </Provider>,
   document.getElementById('root'),
 );
