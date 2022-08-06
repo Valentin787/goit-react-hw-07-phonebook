@@ -1,54 +1,52 @@
-// import {
-//   persistStore,
-//   persistReducer,
-//   FLUSH,
-//   REHYDRATE,
-//   PAUSE,
-//   PERSIST,
-//   PURGE,
-//   REGISTER,
-// } from 'redux-persist';
-// import logger from 'redux-logger'
-// import storage from 'redux-persist/lib/storage'
-
 import { configureStore } from "@reduxjs/toolkit";
+import { createLogger } from 'redux-logger'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+
+import storage from 'redux-persist/lib/storage' 
+
+
 import phoneBookReducer from './phoneBook/phoneBookReducer'
 
+const logger = createLogger({
 
-// const persistConfig = {
-//   key: 'item',
-//   version: 1,
-//   storage,
-// }
-// Як працює міddlewar 
-// const myLogger = store => next =>action=> {
-//   // console.log(`Mylogger => `, action)
-//   // console.log(`next =>`, next)
-//   console.log(`prevState =>`, store.getState().contacts.item)
-//   next(action)
-//   // console.log(`logger =>`,logger)
-//   console.log(`nextState =>`, store.getState().contacts.item)
-// }
-// const contactsPersistedReducer = persistReducer(persistConfig, phoneBookReducer)
-// console.log(`logger =>`,logger)
+  collapsed: (getState, action, logEntry) => !logEntry.error,
+  timestamp: false,
+  duration:true,
+});
 
-const store = configureStore ({
+const persistContactsConfig = {
+  key: 'contacts/filter',
+  storage,
+  whitelist: ['filter']
+}
+
+const store = configureStore({
   reducer: {
-    contacts: phoneBookReducer
+    
+    contacts: persistReducer(persistContactsConfig, phoneBookReducer),
+   
+    
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware(
-      // {
-      // serializableCheck: {
-      //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      // },
-      // }
-    ),
-      // .concat(logger),
-  devTools:process.env.NODE_ENV !== "production"
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+    }
+  }).concat(logger),
+  devTools: process.env.NODE_ENV !== 'production',
 })
+    
+ const persistor = persistStore(store)
 
-// export const persistor = persistStore(store)
+
+export {store,persistor} 
 
 
-export default store

@@ -1,11 +1,10 @@
 import { createPortal } from "react-dom";
 import HashLoader
- from "react-spinners/HashLoader";
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-
+from "react-spinners/HashLoader";
 import s from "./Loader.module.css";
-const loader = document.querySelector("#loader");
 
+
+const loader = document.querySelector("#loader");
 
 function Loader({loading}) {
 

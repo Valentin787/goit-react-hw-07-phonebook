@@ -1,13 +1,15 @@
 import { useEffect,useState,useCallback,useMemo} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { getContacts,addContact, deleteContact  } from 'redux/phoneBook/operation';
+
 import ContactForm from '../ContactForm';
 import ContactList from '../ContactList';
 import Filter from '../Filter';
 import Loader from '../../common/Loader';
 
+import { getContacts,addContact, deleteContact  } from 'redux/phoneBook/operation';
 import { filterContacts } from 'redux/phoneBook/phoneBookActions';
-import {contactsState,filterPhoneBook, loadingSelector} from '../../redux/phoneBook/phonebook-selectors'
+import { contactsState, filterPhoneBook, loadingSelector } from '../../redux/phoneBook/phonebook-selectors'
+
 import { ToastContainer,toast } from 'react-toastify/dist/react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -62,10 +64,10 @@ const App = () => {
     if (finalArray.length === 0 && filterValueName !== "") {
       toast.info(`Усі контакти по запиту "${filterValueName.toUpperCase()}" були видалені ...✋!!`)
       toast.warning(`Очистіть поле для запиту, щоб побачити усі контакти :)))`)
-      dispatch(filterContacts(""))
+      // dispatch(filterContacts(""))
     }
     return finalArray;
-  }, [contactsBook, dispatch, filterValueName]);
+  }, [contactsBook, filterValueName]);
   
   //DELETE_CONTACT 
 
