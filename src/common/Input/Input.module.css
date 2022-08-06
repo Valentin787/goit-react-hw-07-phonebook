@@ -1,0 +1,12 @@
+.wrapperInput {
+  padding: 10px;
+}
+
+.labelTitle {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 300px;
+}

@@ -1,0 +1,35 @@
+.item {
+  display: flex;
+  align-items: center;
+}
+.item::before {
+  content: '';
+  display: inline-block;
+  margin-right: 5px;
+  height: 20px;
+  width: 20px;
+  background-image: url('/src/image/pngwing.com.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+.item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.btnDel {
+  height: 25px;
+  width: 90px;
+  border-radius: 10px;
+  margin-left: 25px;
+  background-color: rgb(177, 166, 248);
+  box-shadow: 0px 5px 9px -1px rgba(0, 31, 54, 0.5);
+  transition: all 200ms ease-in-out;
+}
+
+.btnDel:hover,
+.btnDel:focus {
+  color: white;
+  transform: scale3d(1.1, 1.1, 1.1);
+  background-color: rgb(72, 57, 165);
+}
