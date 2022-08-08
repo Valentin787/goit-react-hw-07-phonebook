@@ -123,4 +123,48 @@ const App = () => {
 };
 
 
+const memoize = fn => {
+  const cashe = {};
+
+  return (...args) => {
+    console.log(`-------------------------`);
+    console.log(`arg->>`, args);
+    const stringifiedArgs = JSON.stringify(args);
+    console.log(`stringifiedArgs->>>`, stringifiedArgs);
+    console.log(`cashe ->>>`, cashe);
+    if (cashe[stringifiedArgs]) {
+      return cashe[stringifiedArgs];
+    }
+
+    cashe[stringifiedArgs] = fn(...args);
+
+    return cashe[stringifiedArgs]
+  }
+}
+
+const multiply = (a, b, c) => {
+  console.log(`multiply`);
+  return a * b * c;
+}
+
+const add = (a, b, c) => {
+  console.log(`add`);
+  return a + b + c;
+}
+
+const memoizeMultiply = memoize(multiply);
+const memoizeAdd = memoize(add);
+
+console.log(memoizeMultiply(1, 2, 3));
+console.log(memoizeMultiply(2, 3, 4));
+
+console.log(memoizeAdd(1, 2, 3));
+console.log(memoizeAdd(2, 3, 4));
+
+console.log(memoizeMultiply(1, 2, 3));
+console.log(memoizeMultiply(2, 3, 4));
+
+console.log(memoizeAdd(1, 2, 3));
+console.log(memoizeAdd(2, 3, 4));
+
 export default App;

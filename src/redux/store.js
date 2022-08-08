@@ -12,8 +12,6 @@ import {
 } from 'redux-persist'
 
 import storage from 'redux-persist/lib/storage' 
-
-
 import phoneBookReducer from './phoneBook/phoneBookReducer'
 
 const logger = createLogger({
@@ -30,11 +28,8 @@ const persistContactsConfig = {
 }
 
 const store = configureStore({
-  reducer: {
-    
+  reducer: { 
     contacts: persistReducer(persistContactsConfig, phoneBookReducer),
-   
-    
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: {
