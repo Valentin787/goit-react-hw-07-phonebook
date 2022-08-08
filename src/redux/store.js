@@ -36,7 +36,8 @@ const store = configureStore({
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
     }
   }).concat(logger),
-  devTools: process.env.NODE_ENV !== 'production',
+  // devTools: process.env.NODE_ENV !== 'production',
+  devTools: true,
 })
     
  const persistor = persistStore(store)
