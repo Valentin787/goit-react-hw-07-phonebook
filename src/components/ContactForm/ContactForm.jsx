@@ -1,13 +1,24 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import Input from '../../common/Input';
 import { nanoid } from 'nanoid';
 import s from './ContactForm.module.css';
 
 
-const ContactForm = ({confirmContact,normalizeName}) => {
+
+const ContactForm = ({confirmContact}) => {
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const normalizeName = name => name
+      .split(' ')
+      .map(word => {
+        const firstUpCaseLetter = word.charAt(0).toUpperCase();
+        const anoterLetter = word.substring(1);
+        return `${firstUpCaseLetter}${anoterLetter}`;
+      })
+      .join(' ');
 
   const onSubFormData = e => {
     e.preventDefault();
@@ -26,6 +37,8 @@ const ContactForm = ({confirmContact,normalizeName}) => {
     setName('');
     setNumber('');
   }
+    
+
 
   return (
     <>
@@ -62,6 +75,11 @@ const ContactForm = ({confirmContact,normalizeName}) => {
     </>
 
   );
+};
+
+ContactForm.propTypes = {
+  confirmContact: PropTypes.func,
+  // normalizeName: PropTypes.func,
 };
 
 export default ContactForm;

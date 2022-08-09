@@ -85,14 +85,14 @@ const App = () => {
   
   
  
-  const normalizeName = name => name
-      .split(' ')
-      .map(word => {
-        const firstUpCaseLetter = word.charAt(0).toUpperCase();
-        const anoterLetter = word.substring(1);
-        return `${firstUpCaseLetter}${anoterLetter}`;
-      })
-      .join(' ');
+  // const normalizeName = name => name
+  //     .split(' ')
+  //     .map(word => {
+  //       const firstUpCaseLetter = word.charAt(0).toUpperCase();
+  //       const anoterLetter = word.substring(1);
+  //       return `${firstUpCaseLetter}${anoterLetter}`;
+  //     })
+  //     .join(' ');
 
   return (
     <>
@@ -101,7 +101,7 @@ const App = () => {
       
       {<ContactForm
         confirmContact={confirmContact}
-        normalizeName={normalizeName}
+        // normalizeName={normalizeName}
       />}
     {contactsBook.length > 0 && (
         <Filter
@@ -123,48 +123,67 @@ const App = () => {
 };
 
 
-const memoize = fn => {
-  const cashe = {};
 
-  return (...args) => {
-    console.log(`-------------------------`);
-    console.log(`arg->>`, args);
-    const stringifiedArgs = JSON.stringify(args);
-    console.log(`stringifiedArgs->>>`, stringifiedArgs);
-    console.log(`cashe ->>>`, cashe);
-    if (cashe[stringifiedArgs]) {
-      return cashe[stringifiedArgs];
-    }
-
-    cashe[stringifiedArgs] = fn(...args);
-
-    return cashe[stringifiedArgs]
-  }
-}
-
-const multiply = (a, b, c) => {
-  console.log(`multiply`);
-  return a * b * c;
-}
-
-const add = (a, b, c) => {
-  console.log(`add`);
-  return a + b + c;
-}
-
-const memoizeMultiply = memoize(multiply);
-const memoizeAdd = memoize(add);
-
-console.log(memoizeMultiply(1, 2, 3));
-console.log(memoizeMultiply(2, 3, 4));
-
-console.log(memoizeAdd(1, 2, 3));
-console.log(memoizeAdd(2, 3, 4));
-
-console.log(memoizeMultiply(1, 2, 3));
-console.log(memoizeMultiply(2, 3, 4));
-
-console.log(memoizeAdd(1, 2, 3));
-console.log(memoizeAdd(2, 3, 4));
 
 export default App;
+
+// const salaries1 = {
+// Manager: { salary: 1000, tax: "10%" },
+// Designer: { salary: 600, tax: "30%" },
+// Artist: { salary: 1500, tax: "15%" },}
+// const team1 = [
+// { name: "Misha", specialization: "Manager" },
+// { name: "Max", specialization: "Designer" },
+// { name: "Vova", specialization: "Designer"},
+// { name: "Leo", specialization: "Artist"},]
+
+// const calculateTeamFinanceReport = (salaries, team) => {
+
+//   // let arr = [];
+//   let name = [];
+//   let totalBudgetTeam = 0;
+//   let totalBudgetManager = 0;
+//   let totalBudgetDesigner = 0;
+//   let totalBudgetArtist = 0;
+
+
+//   // arr[objName] = objValue;
+  
+//   const objValues = Object.keys(salaries1)
+//   const arr = objValues.map(item => [item])
+//   // console.log(arr);
+
+//   const array = team1.map(item => {
+//     console.log(item.specialization === salaries1.Manager);
+//     if(item.specialization === "Designer"){
+//       return name.push(item.name)
+//     }
+//     if else()
+//     console.log(name);
+//   })
+  
+//   // const manager = team1.map(item => {
+//   //   if (item.specialization === arr[0]) {
+//   //     salaries1.Manager.salary + salaries1.Manager.salary
+//   //   }
+//   //   console.log(item);
+//   // })
+//   const objEntries = Object.entries(salaries1);
+//   // console.log(objEntries);
+
+  
+  
+// }
+
+
+// const financeReport1 = calculateTeamFinanceReport(salaries1, team1)
+// console.log(JSON.stringify(financeReport1))
+
+
+// {
+// totalBudgetTeam: 3398, // total salaries with tax of entire team; should be integer
+// (truncate the fractional part after all calculations)
+// totalBudgetProgger: 1176, // total salaries with tax for all members by 'Progger'
+// specialization; should be integer (truncate the fractional part after all calculations)
+// totalBudgetTester: 2222, // total salaries with tax for all members by 'Tester'
+// specialization; should be integer (truncate the fractional part after all calculations)

@@ -16,7 +16,7 @@ function Filter({filterChangeInput,value}) {
 }
 
 Filter.propTypes = {
-  onChangeDate: PropTypes.func,
+  filterChangeInput: PropTypes.func,
   value: PropTypes.string,
 };
 
